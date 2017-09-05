@@ -137,7 +137,7 @@ public class Board {
             exchangeArray = copy(board, size);
             exchange(exchangeArray, x, y, x, y + 1);
             brosBoard = new Board(exchangeArray);
-            bros.adchangedd(brosBoard);
+            bros.add(brosBoard);
         }
         return bros;
     }
