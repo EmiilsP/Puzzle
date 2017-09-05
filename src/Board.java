@@ -1,6 +1,5 @@
-import javax.swing.*;
 import java.util.Arrays;
-import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class Board {
@@ -115,30 +114,30 @@ public class Board {
         }
         int[][] exchangeArray;
         Board brosBoard;
-        Stack<Board> bros = new Stack<>();
+        LinkedList<Board> bros = new LinkedList<>();
         if (x > 0) { // exchange up
             exchangeArray = copy(board, size);
             exchange(exchangeArray, x, y, x - 1, y);
             brosBoard = new Board(exchangeArray);
-            bros.push(brosBoard);
+            bros.add(brosBoard);
         }
         if (x < size - 1) { // exchange down
             exchangeArray = copy(board, size);
             exchange(exchangeArray, x, y, x + 1, y);
             brosBoard = new Board(exchangeArray);
-            bros.push(brosBoard);
+            bros.add(brosBoard);
         }
         if (y > 0) { // exchange left
             exchangeArray = copy(board, size);
             exchange(exchangeArray, x, y, x, y - 1);
             brosBoard = new Board(exchangeArray);
-            bros.push(brosBoard);
+            bros.add(brosBoard);
         }
         if (y < size - 1) { // exchange right
             exchangeArray = copy(board, size);
             exchange(exchangeArray, x, y, x, y + 1);
             brosBoard = new Board(exchangeArray);
-            bros.push(brosBoard);
+            bros.adchangedd(brosBoard);
         }
         return bros;
     }
@@ -182,17 +181,6 @@ public class Board {
         int exchange = blocks[xFirst][yFirst];
         blocks[xFirst][yFirst] = blocks[xSecond][ySecond];
         blocks[xSecond][ySecond] = exchange;
-    }
-
-    public static void main(String[] args) {
-        int a[][] = {{2, 0, 3}, {4, 5, 1}, {8, 7, 6}};
-        Board xxx = new Board(a);
-
-        Iterable<Board> bordelis = xxx.neighbors();
-
-        for (Board zdz : bordelis) {
-            //   System.out.println(zdz.toString());
-        }
     }
 }
 
