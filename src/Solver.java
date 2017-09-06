@@ -1,11 +1,12 @@
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.MinPQ;
+import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.util.LinkedList;
 
 public class Solver {
-    private final LinkedList<Board> boards;
+    private final Stack<Board> boards;
     private int moves;
     private boolean isSolvable;
 
@@ -41,10 +42,13 @@ public class Solver {
     }
 
     public Solver(Board initial) {  // find a solution to the initial board (using the A* algorithm)
-        boards = new LinkedList<>();
+        if (initial == null) {
+            throw new IllegalArgumentException();
+        }
+        boards = new Stack<>();
         if (initial.isGoal()) {
             isSolvable = true;
-            this.boards.add(initial);
+            this.boards.push(initial);
             return;
         }
         if (initial.twin().isGoal()) {
@@ -72,10 +76,10 @@ public class Solver {
             }
             if (board.isGoal()) {
                 isSolvable = true;
-                this.boards.add(board);
+                this.boards.push(board);
                 while (node.previous != null) {
                     node = node.previous;
-                    this.boards.add(node.board);
+                    this.boards.push(node.board);
                 }
                 return;
             }
